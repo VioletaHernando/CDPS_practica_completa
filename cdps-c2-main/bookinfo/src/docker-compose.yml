@@ -1,0 +1,33 @@
+version: '3.1'
+services:
+  productpage:
+    image: test/examples-bookinfo-productpage-v1
+    container_name: g30-productpage
+    environment:
+      - GROUP_NUMBER=30
+    ports:
+      - "9080:9080"
+  details:
+    image: test/examples-bookinfo-details-v2
+    container_name: g30-details
+    environment:
+      - SERVICE_VERSION=v2
+      - ENABLE_EXTERNAL_BOOK_SERVICE=true
+    ports:
+      - "9070:9080"
+  reviews:
+    image: test/examples-bookinfo-reviews-v1
+    container_name: g30-reviews
+    environment:
+      - SERVICE_VERSION=v1
+      - ENABLE_RATINGS=true
+    ports:
+      - "9060:9080"
+  ratings:
+    image: test/examples-bookinfo-ratings-v1
+    container_name: g30-ratings
+    environment:
+      - SERVICE_VERSION=v1
+    ports:
+      - "9050:9080"
+  
