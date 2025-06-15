@@ -244,7 +244,7 @@ spec:
     - protocol: "TCP"
       port: 9080
       targetPort: 9080
-  type: ClusterIP
+  type: LoadBalancer
   selector:
     app: productpage
 ---
