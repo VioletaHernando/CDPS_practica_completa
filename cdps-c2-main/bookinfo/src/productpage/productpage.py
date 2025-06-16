@@ -17,11 +17,6 @@
 import time
 from flask import Flask, request, session, render_template, redirect, g
 from json2html import json2html
-from opentelemetry import trace
-from opentelemetry.instrumentation.flask import FlaskInstrumentor
-from opentelemetry.propagate import set_global_textmap
-from opentelemetry.propagators.b3 import B3MultiFormat
-from opentelemetry.sdk.trace import TracerProvider
 from prometheus_client import Counter, generate_latest
 import asyncio
 import logging
@@ -113,13 +108,8 @@ request_result_counter = Counter('request_result', 'Results of requests', ['dest
 # extract/inject context, etc.
 
 
-propagator = B3MultiFormat()
-set_global_textmap(B3MultiFormat())
-provider = TracerProvider()
 # Sets the global default tracer provider
-trace.set_tracer_provider(provider)
 
-tracer = trace.get_tracer(__name__)
 
 
 def getForwardHeaders(request):
@@ -271,13 +261,13 @@ def front():
 
     reviewsStatus, reviews = getProductReviews(product_id, headers)
     return render_template(
-    'productpage.html',
-    detailsStatus=detailsStatus,
-    reviewsStatus=reviewsStatus,
-    product=product,
-    details=details,
-    reviews={"reviews": reviews["reviews"]},  # 👈 esta es la clave
-    user=user)
+        'productpage.html',
+        detailsStatus=detailsStatus,
+        reviewsStatus=reviewsStatus,
+        product=product,
+        details=details,
+        reviews=reviews,
+        user=user)
 
 
 # The API:
