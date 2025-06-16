@@ -146,7 +146,6 @@ spec:
         emptyDir: {}
       - name: tmp
         emptyDir: {}
----
 # apiVersion: apps/v1
 # kind: Deployment
 # metadata:
