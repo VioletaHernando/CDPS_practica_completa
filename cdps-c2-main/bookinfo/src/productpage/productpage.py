@@ -271,13 +271,13 @@ def front():
 
     reviewsStatus, reviews = getProductReviews(product_id, headers)
     return render_template(
-        'productpage.html',
-        detailsStatus=detailsStatus,
-        reviewsStatus=reviewsStatus,
-        product=product,
-        details=details,
-        reviews=reviews,
-        user=user)
+    'productpage.html',
+    detailsStatus=detailsStatus,
+    reviewsStatus=reviewsStatus,
+    product=product,
+    details=details,
+    reviews={"reviews": reviews["reviews"]},  # 👈 esta es la clave
+    user=user)
 
 
 # The API:
