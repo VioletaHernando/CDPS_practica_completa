@@ -38,7 +38,7 @@ spec:
     spec:
       containers:
       - name: productpage
-        image: vtahdo/productpage:tfg-violeta-v7
+        image: vtahdo/productpage:tfg-violeta-final
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 9080
